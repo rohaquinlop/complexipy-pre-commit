@@ -1,0 +1,10 @@
+- id: complexipy
+  name: complexipy
+  description: "Run 'complexipy' for extremely fast calculation of cognitive complexity of Python files"
+  entry: complexipy
+  language: python
+  types_or: [python, pyi, jupyter]
+  args: []
+  require_serial: true
+  additional_dependencies: []
+  minimum_pre_commit_version: "2.9.2"
