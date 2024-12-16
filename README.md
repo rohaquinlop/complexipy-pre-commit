@@ -10,7 +10,7 @@ To run Complexipy's [linter](https://github.com/rohaquinlop/complexipy) via pre-
 
 ```yaml
 repos:
-- repo: https://github.com/illusional/complexipy-pre-commit
+- repo: https://github.com/rohaquinlop/complexipy-pre-commit
   # complexipy version.
   rev: v1.2.0
   hooks:
@@ -21,7 +21,7 @@ To avoid running on Jupyter Notebooks, remove `jupyter` from the list of allowed
 
 ```yaml
 repos:
-- repo: https://github.com/illusional/complexipy-pre-commit
+- repo: https://github.com/rohaquinlop/complexipy-pre-commit
   # complexipy version.
   rev: v1.2.0
   hooks:
