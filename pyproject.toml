@@ -1,0 +1,14 @@
+[project]
+name = "complexipy-pre-commit"
+version = "1.2.0"
+dependencies = [
+    "complexipy==1.2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "packaging~=23.1",
+]
+
+[tool.ruff]
+line-length = 88
