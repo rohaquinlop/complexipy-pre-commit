@@ -30,11 +30,3 @@ repos:
             --install-types,
             --non-interactive,
           ]
-
-  - repo: https://github.com/rohaquinlop/complexipy-pre-commit
-    # complexipy version.
-    rev: v2.0.0
-    hooks:
-      # Run the cognitive complexity checker.
-      - id: complexipy
-        types_or: [ python, pyi ]
