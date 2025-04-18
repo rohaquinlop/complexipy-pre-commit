@@ -14,4 +14,4 @@ jobs:
           python-version: '3.12'
       - uses: pre-commit/action@v3.0.1
       - name: pre-commit
-        run: pre-commit run --all-files
+        run: pre-commit run --all-files && pre-commit run complexipy .
