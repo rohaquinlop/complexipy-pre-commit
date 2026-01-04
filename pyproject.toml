@@ -1,6 +1,6 @@
 [project]
 name = "complexipy-pre-commit"
-version = "4.2.0"
+version = "5.1.0"
 dependencies = ["complexipy==5.1.0"]
 
 [project.optional-dependencies]
