@@ -14,6 +14,14 @@ jobs:
         steps:
             - uses: actions/checkout@v4
 
+            - name: Validate version
+              run: |
+                  VERSION="${{ github.event.client_payload.version }}"
+                  if ! echo "$VERSION" | grep -qE '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+                      echo "Invalid version: ${VERSION}" >&2
+                      exit 1
+                  fi
+
             - name: Update version
               run: |
                   VERSION="${{ github.event.client_payload.version }}"
@@ -27,13 +35,14 @@ jobs:
                   git config user.name "github-actions[bot]"
                   git config user.email "github-actions[bot]@users.noreply.github.com"
                   git add pyproject.toml README.md
-                  git commit -m "chore: bump complexipy to ${VERSION}"
-                  git tag "v${VERSION}"
-                  git push origin main "v${VERSION}"
+                  git diff --cached --quiet || git commit -m "chore: bump complexipy to ${VERSION}"
+                  git tag "v${VERSION}" 2>/dev/null || echo "tag v${VERSION} already exists"
+                  git push origin main
+                  git push origin "v${VERSION}" || echo "tag v${VERSION} already pushed"
 
             - name: Create GitHub Release
               env:
                   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: |
                   VERSION="${{ github.event.client_payload.version }}"
-                  gh release create "v${VERSION}" --title "v${VERSION}" --generate-notes
+                  gh release view "v${VERSION}" >/dev/null 2>&1 || gh release create "v${VERSION}" --title "v${VERSION}" --generate-notes
