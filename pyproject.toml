@@ -1,7 +1,7 @@
 [project]
 name = "complexipy-pre-commit"
-version = "7.0.1"
-dependencies = ["complexipy==7.0.1"]
+version = "8.0.1"
+dependencies = ["complexipy==8.0.1"]
 
 [project.optional-dependencies]
 dev = ["packaging~=23.1"]

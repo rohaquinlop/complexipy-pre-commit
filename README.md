@@ -12,7 +12,7 @@ To run Complexipy's [linter](https://github.com/rohaquinlop/complexipy) via pre-
 repos:
 - repo: https://github.com/rohaquinlop/complexipy-pre-commit
   # complexipy version.
-  rev: v7.0.1
+  rev: v8.0.1
   hooks:
     # Run the cognitive complexity checker.
     - id: complexipy
@@ -23,7 +23,7 @@ To avoid running on Jupyter Notebooks, remove `jupyter` from the list of allowed
 repos:
 - repo: https://github.com/rohaquinlop/complexipy-pre-commit
   # complexipy version.
-  rev: v7.0.1
+  rev: v8.0.1
   hooks:
     # Run the cognitive complexity checker.
     - id: complexipy
