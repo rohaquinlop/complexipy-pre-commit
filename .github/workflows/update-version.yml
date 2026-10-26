@@ -11,27 +11,26 @@ jobs:
     update:
         runs-on: ubuntu-latest
         if: github.event.client_payload.version
+        env:
+            VERSION: ${{ github.event.client_payload.version }}
         steps:
             - uses: actions/checkout@v4
 
             - name: Validate version
               run: |
-                  VERSION="${{ github.event.client_payload.version }}"
-                  if ! echo "$VERSION" | grep -qE '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+                  if ! printf '%s' "$VERSION" | grep -qE '^[0-9]+\.[0-9]+\.[0-9]+$'; then
                       echo "Invalid version: ${VERSION}" >&2
                       exit 1
                   fi
 
             - name: Update version
               run: |
-                  VERSION="${{ github.event.client_payload.version }}"
                   sed -i "s/^version = \".*\"/version = \"${VERSION}\"/" pyproject.toml
                   sed -i "s/complexipy==.*\"/complexipy==${VERSION}\"/" pyproject.toml
                   sed -i "s/rev: v[0-9.]*/rev: v${VERSION}/" README.md
 
             - name: Commit and tag
               run: |
-                  VERSION="${{ github.event.client_payload.version }}"
                   git config user.name "github-actions[bot]"
                   git config user.email "github-actions[bot]@users.noreply.github.com"
                   git add pyproject.toml README.md
@@ -44,5 +43,4 @@ jobs:
               env:
                   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: |
-                  VERSION="${{ github.event.client_payload.version }}"
                   gh release view "v${VERSION}" >/dev/null 2>&1 || gh release create "v${VERSION}" --title "v${VERSION}" --generate-notes
