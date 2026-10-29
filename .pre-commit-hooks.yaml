@@ -1,7 +1,7 @@
 - id: complexipy
   name: complexipy
   description: "Run 'complexipy' for extremely fast calculation of cognitive complexity of Python files"
-  entry: complexipy
+  entry: complexipy --force-exclude
   language: python
   types_or: [python, pyi, jupyter]
   args: []
